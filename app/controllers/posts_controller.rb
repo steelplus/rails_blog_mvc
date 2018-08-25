@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :is_posted_user?, only: [:edit, :update, :destroy]
+  before_action :is_posted_user!, only: [:edit, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
@@ -93,7 +93,7 @@ class PostsController < ApplicationController
   end
 
   # 不正なエントリ操作はホーム画面にリダイレクト
-  def is_posted_user?
+  def is_posted_user!
     if @post.user_id != current_user.id
       redirect_to :controller => 'home', :action => 'index'
     end
