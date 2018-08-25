@@ -22,6 +22,7 @@
         <% if user_signed_in? %>
           <%= link_to 'ホームへ', home_home_path, {:class => "navbar-item"} %>
           <%= link_to 'マイ記事', posts_path, {:class => "navbar-item"} %>
+          <%= link_to '記事一覧', posts_path(mode: 'all'), {:class => "navbar-item"} %>
           <%= link_to 'プロフィール変更', edit_user_registration_path, {:class => "navbar-item"} %>
           <%= link_to 'ログアウト', destroy_user_session_path, {method: :delete, :class => "navbar-item"} %>
         <% else %>
@@ -33,10 +34,21 @@
   </nav>
 </header>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
 <section class="section">
+  <% if notice != nil %>
+    <article class="message is-success">
+      <div class="message-body">
+        <p class="notice"><%= notice %></p>
+      </div>
+    </article>
+  <% end %>
+  <% if alert != nil %>
+    <article class="message is-warning">
+      <div class="message-body">
+        <p class="notice"><%= alert %></p>
+      </div>
+    </article>
+  <% end %>
   <%= yield %>
 </section>
 </body>
