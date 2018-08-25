@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_action :sign_in_required, only: [:home]
+  before_action :authenticate_user!, only: [:home]
 
   def index
     # サインインしている場合はホーム画面にリダイレクト
